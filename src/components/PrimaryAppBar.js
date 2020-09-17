@@ -1,5 +1,4 @@
 import React from "react"
-import { makeStyles } from "@material-ui/core/styles"
 import AppBar from "@material-ui/core/AppBar"
 import Toolbar from "@material-ui/core/Toolbar"
 import IconButton from "@material-ui/core/IconButton"
@@ -8,27 +7,19 @@ import Badge from "@material-ui/core/Badge"
 import AccountCircle from "@material-ui/icons/AccountCircle"
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart"
 
-const useStyles = makeStyles(() => ({
-  grow: {
-    flexGrow: 1,
-  },
-}))
-
-export default function PrimaryAppBar() {
-  const classes = useStyles()
-
+export default function PrimaryAppBar({ itemCount = 12 }) {
   return (
     <>
-      <AppBar position="static" color="transparent">
+      <AppBar position="sticky" color="inherit">
         <Toolbar>
           <Typography variant="h6" noWrap>
             React Context API Sample
           </Typography>
 
-          <div className={classes.grow} />
+          <div style={{ flexGrow: 1 }} />
           <div>
             <IconButton aria-label="show 17 new notifications" color="inherit">
-              <Badge badgeContent={17} color="secondary">
+              <Badge badgeContent={itemCount} color="secondary">
                 <ShoppingCartIcon />
               </Badge>
             </IconButton>
