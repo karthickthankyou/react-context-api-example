@@ -10,9 +10,6 @@ import Cart from "./components/Cart"
 import { getProducts } from "./db"
 
 const useStyles = makeStyles({
-  bgGrey: {
-    backgroundColor: "#ddd",
-  },
   p10: {
     padding: "6px",
   },
@@ -28,7 +25,7 @@ function App() {
   return (
     <>
       <PrimaryAppBar />
-      <Grid container className={classes.bgGrey}>
+      <Grid container>
         <Grid item xs={9} className={classes.p10}>
           <Products products={products} />
         </Grid>
