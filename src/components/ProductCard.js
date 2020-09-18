@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useContext } from "react"
 import { makeStyles } from "@material-ui/core/styles"
 import Card from "@material-ui/core/Card"
 import CardActions from "@material-ui/core/CardActions"
@@ -8,29 +8,37 @@ import Button from "@material-ui/core/Button"
 import Typography from "@material-ui/core/Typography"
 
 import { centsToDollar } from "../util"
-
+import { GlobalContext } from "../context/ContextProvider"
 const useStyles = makeStyles({
   root: {
     margin: "6px",
   },
 })
 
-export default function ProductCard({ title, price }) {
+export default function ProductCard({ product }) {
   const classes = useStyles()
+  const {
+    action: { addToCart },
+  } = useContext(GlobalContext)
 
   return (
     <Card className={classes.root}>
       <CardContent>
         <Typography gutterBottom variant="h5" component="h2">
-          {title}
+          {product.title}
         </Typography>
         <Typography gutterBottom variant="subtitle1">
-          {centsToDollar(price)}
+          {centsToDollar(product.price)}
         </Typography>
       </CardContent>
 
       <CardActions>
-        <Button fullWidth size="small" color="primary">
+        <Button
+          fullWidth
+          size="small"
+          color="primary"
+          onClick={() => addToCart(product)}
+        >
           Add to cart
         </Button>
       </CardActions>

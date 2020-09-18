@@ -1,10 +1,15 @@
-import React from "react"
+import React, { useContext } from "react"
 import Grid from "@material-ui/core/Grid"
 import Typography from "@material-ui/core/Typography"
 import CartCard from "./CartCard"
 import PayButton from "./PayButton"
 
-function Cart({ cartItems = [] }) {
+import { GlobalContext } from "../context/ContextProvider"
+
+function Cart() {
+  const {
+    state: { cartItems },
+  } = useContext(GlobalContext)
   return (
     <Grid container>
       <Typography
@@ -18,7 +23,7 @@ function Cart({ cartItems = [] }) {
 
       {cartItems.map((cartItem) => (
         <Grid item xs={12} key={cartItem.id}>
-          <CartCard title={cartItem.title} price={cartItem.price} />
+          <CartCard cartItem={cartItem} />
         </Grid>
       ))}
       <PayButton amountToPay={0} />

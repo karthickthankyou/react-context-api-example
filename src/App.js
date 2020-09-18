@@ -19,17 +19,13 @@ const useStyles = makeStyles({
 
 function App() {
   const classes = useStyles()
-  const [products, setProducts] = useState([])
-  useEffect(async () => {
-    const results = await getProducts()
-    setProducts(results)
-  }, [])
+
   return (
     <ContextProvider>
       <PrimaryAppBar />
       <Grid container>
         <Grid item xs={9} className={classes.p10}>
-          <Products products={products} />
+          <Products />
         </Grid>
         <Grid item xs={3} className={classes.p10}>
           <Cart />

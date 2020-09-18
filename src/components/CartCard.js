@@ -1,11 +1,16 @@
-import React from "react"
+import React, { useContext } from "react"
 import Grid from "@material-ui/core/Grid"
 import Button from "@material-ui/core/Button"
 import Typography from "@material-ui/core/Typography"
 
 import { centsToDollar } from "../util"
 
-export default function ProductCard({ title, price }) {
+import { GlobalContext } from "../context/ContextProvider"
+
+export default function ProductCard({ cartItem }) {
+  const {
+    action: { removeFromCart },
+  } = useContext(GlobalContext)
   return (
     <Grid
       container
@@ -18,16 +23,20 @@ export default function ProductCard({ title, price }) {
     >
       <Grid item xs={9}>
         <Typography variant="h5" component="p">
-          {title}
+          {cartItem.title}
         </Typography>
 
         <Typography variant="subtitle1" component="p">
-          {centsToDollar(price)}
+          {centsToDollar(cartItem.price)}
         </Typography>
       </Grid>
 
       <Grid container item xs={3} justify="flex-end">
-        <Button size="small" color="primary">
+        <Button
+          size="small"
+          color="primary"
+          onClick={() => removeFromCart(cartItem.id)}
+        >
           Remove
         </Button>
       </Grid>
