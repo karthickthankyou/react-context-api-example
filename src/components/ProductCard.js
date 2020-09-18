@@ -18,8 +18,11 @@ const useStyles = makeStyles({
 export default function ProductCard({ product }) {
   const classes = useStyles()
   const {
+    state: { cartItems },
     action: { addToCart },
   } = useContext(GlobalContext)
+
+  const inCart = cartItems.findIndex((item) => item.id === product.id) >= 0
 
   return (
     <Card className={classes.root}>
@@ -38,8 +41,9 @@ export default function ProductCard({ product }) {
           size="small"
           color="primary"
           onClick={() => addToCart(product)}
+          disabled={inCart}
         >
-          Add to cart
+          {inCart ? "In Cart" : "Add to cart"}
         </Button>
       </CardActions>
     </Card>
