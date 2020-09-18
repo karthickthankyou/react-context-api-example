@@ -1,11 +1,10 @@
-import React, { useContext } from "react"
+import React from "react"
 import Grid from "@material-ui/core/Grid"
 import ProductCard from "./ProductCard"
 
 import { GlobalContext } from "../context/ContextProvider"
 
 function Products({ products = [] }) {
-  const context = useContext(GlobalContext)
   console.log(context)
   return (
     <Grid container>
