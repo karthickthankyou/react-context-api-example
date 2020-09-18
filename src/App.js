@@ -9,6 +9,8 @@ import Cart from "./components/Cart"
 
 import { getProducts } from "./db"
 
+import ContextProvider from "./context/ContextProvider"
+
 const useStyles = makeStyles({
   p10: {
     padding: "6px",
@@ -23,7 +25,7 @@ function App() {
     setProducts(results)
   }, [])
   return (
-    <>
+    <ContextProvider>
       <PrimaryAppBar />
       <Grid container>
         <Grid item xs={9} className={classes.p10}>
@@ -33,7 +35,7 @@ function App() {
           <Cart />
         </Grid>
       </Grid>
-    </>
+    </ContextProvider>
   )
 }
 
